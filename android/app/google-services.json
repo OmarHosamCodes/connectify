@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "513946396844",
+    "project_id": "connectify-hackathon-app",
+    "storage_bucket": "connectify-hackathon-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:513946396844:android:022bdbd58afbe319fa5709",
+        "android_client_info": {
+          "package_name": "com.connectify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRwcQKBvUpZEoRg_znHlrb4pyIwB1mKdw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

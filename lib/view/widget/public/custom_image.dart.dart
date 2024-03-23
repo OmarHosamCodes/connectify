@@ -39,7 +39,7 @@ class CustomImage extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: source,
       progressIndicatorBuilder: (context, url, progress) {
-        return const Center(child: CustomPopups.loadingDialog());
+        return const Center(child: CustomPopups.loadingIndicator());
       },
       errorWidget: (context, url, error) => buildErrorImage(),
       fadeInDuration: SimpleConstants.slowAnimationDuration,
@@ -70,7 +70,8 @@ class CustomImage extends StatelessWidget {
   Widget buildErrorImage() {
     return Icon(
       fallbackIcon,
-      color: Colors.grey.shade100,
+      color: const Color(0xFF0f0f0f),
+      size: 50,
     );
   }
 

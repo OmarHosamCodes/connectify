@@ -18,6 +18,8 @@ export 'view/widget/public/custom_gap.dart';
 export 'view/widget/public/custom_popups.dart';
 export 'view/widget/public/custom_drawer.dart';
 export 'view/widget/public/custom_image.dart.dart';
+export 'view/widget/private/marker_sheet.dart';
+export 'view/widget/public/custom_glass_morphism.dart';
 
 //* Models
 export 'model/user_model.dart';
@@ -35,6 +37,7 @@ export 'constant/simple_constants.dart';
 export 'controller/routing_controller.dart';
 export 'controller/map_controller.dart';
 export 'controller/auth_controller.dart';
+export 'controller/user_controller.dart';
 
 //* Providers
 export 'controller/provider/user_type_provider.dart';
@@ -47,19 +50,9 @@ export 'package:firebase_storage/firebase_storage.dart';
 export 'package:firebase_core/firebase_core.dart';
 export 'package:flutter/material.dart';
 export 'package:go_router/go_router.dart';
-// export 'package:eva_icons_flutter/eva_icons_flutter.dart';
-// export 'package:smooth_page_indicator/smooth_page_indicator.dart';
 export 'package:flutter_riverpod/flutter_riverpod.dart'
     hide describeIdentity, shortHash;
-// export 'dart:io';
-// export 'package:image_picker/image_picker.dart';
-// export 'package:permission_handler/permission_handler.dart';
-// export 'package:uuid/uuid.dart';
-// export 'package:chewie/chewie.dart';
-// export 'package:video_player/video_player.dart';
-// export 'package:lottie/lottie.dart';
-// export 'package:curved_navigation_bar/curved_navigation_bar.dart';
-
 export 'package:geolocator/geolocator.dart';
 export 'package:google_maps_flutter/google_maps_flutter.dart';
 export 'package:cached_network_image/cached_network_image.dart';
+export 'dart:ui' show ImageFilter;

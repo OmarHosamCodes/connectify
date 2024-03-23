@@ -19,6 +19,15 @@ class CustomPopups extends StatelessWidget {
         snackBarType = null,
         popupType = PopupType.loadingDialog;
 
+  const CustomPopups.loadingIndicator({
+    super.key,
+  })  : title = null,
+        content = null,
+        message = null,
+        dialogType = null,
+        snackBarType = null,
+        popupType = PopupType.loadingIndicator;
+
   const CustomPopups.snackBar({
     super.key,
     this.message,
@@ -48,6 +57,7 @@ class CustomPopups extends StatelessWidget {
       PopupType.dialog => _buildDialog(),
       PopupType.snackBar => _buildSnackBar(),
       PopupType.loadingDialog => _buildLoadingDialog(),
+      PopupType.loadingIndicator => _buildLoadingIndicator(),
     };
   }
 
@@ -107,6 +117,12 @@ class CustomPopups extends StatelessWidget {
     ));
   }
 
+  Widget _buildLoadingIndicator() {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
   static void show(
     CustomPopups customPopup,
   ) {
@@ -128,6 +144,13 @@ class CustomPopups extends StatelessWidget {
       case PopupType.snackBar:
         ScaffoldMessenger.of(RoutingController.context)
             .showSnackBar(customPopup as SnackBar);
+      case PopupType.loadingIndicator:
+        showDialog<void>(
+          context: RoutingController.context,
+          builder: (context) {
+            return customPopup;
+          },
+        );
     }
   }
 }
@@ -151,4 +174,5 @@ enum PopupType {
   dialog,
   loadingDialog,
   snackBar,
+  loadingIndicator,
 }

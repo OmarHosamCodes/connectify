@@ -3,19 +3,23 @@
 import 'package:connectify/library.dart';
 
 class UserModel {
-  String id;
-  Timestamp createdAt;
-  String name;
-  String email;
-  String password;
-  UserType userType;
+  final String? id;
+  final Timestamp? createdAt;
+  final String? name;
+  final String? email;
+  final String? password;
+  final String? imageUrl;
+  final PhoneAuthCredential? phoneAuthCredential;
+  final UserType? userType;
   UserModel({
-    required this.id,
-    required this.createdAt,
-    required this.name,
-    required this.email,
-    required this.password,
-    required this.userType,
+    this.id,
+    this.createdAt,
+    this.name,
+    this.email,
+    this.password,
+    this.imageUrl,
+    this.phoneAuthCredential,
+    this.userType,
   });
 
   UserModel copyWith({
@@ -24,6 +28,8 @@ class UserModel {
     String? name,
     String? email,
     String? password,
+    String? imageUrl,
+    PhoneAuthCredential? phoneAuthCredential,
     UserType? userType,
   }) {
     return UserModel(
@@ -32,6 +38,8 @@ class UserModel {
       name: name ?? this.name,
       email: email ?? this.email,
       password: password ?? this.password,
+      imageUrl: imageUrl ?? this.imageUrl,
+      phoneAuthCredential: phoneAuthCredential ?? this.phoneAuthCredential,
       userType: userType ?? this.userType,
     );
   }
@@ -40,22 +48,16 @@ class UserModel {
     return <String, dynamic>{
       'id': id,
       'createdAt': createdAt,
-      'name': name,
-      'email': email,
-      'password': password,
-      'userType': userType.name,
+      'userType': userType!.name,
     };
   }
 
   factory UserModel.fromJson(Map<String, dynamic> map) {
     return UserModel(
-      id: map['id'] as String,
-      createdAt: map['createdAt'] as Timestamp,
-      name: map['name'] as String,
-      email: map['email'] as String,
-      password: map['password'] as String,
+      id: map['id'] as String?,
+      createdAt: map['createdAt'] as Timestamp?,
       userType: UserType.values
-          .firstWhere((element) => element.name == map['userType'] as String),
+          .firstWhere((element) => element.name == map['userType'] as String?),
     );
   }
 }

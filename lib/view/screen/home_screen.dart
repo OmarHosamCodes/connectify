@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
-            onPressed: () {},
+            onPressed: () => context.push(Routes.search),
           ),
         ],
       ),
@@ -29,6 +29,56 @@ class _HomeScreenState extends State<HomeScreen> {
             data: (position) {
               return GoogleMap(
                 mapType: MapType.normal,
+                markers: {
+                  CustomMarker(
+                    id: UniqueKey().toString(),
+                    markerPosition: position,
+                    creatorID: 'myLocation',
+                    title: 'English Tutor',
+                    description:
+                        'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                    imageUrl: 'https://placehold.co/600x400/png',
+                    category: 'Tutoring',
+                    markerId: const MarkerId('myLocation'),
+                    onTap: () {
+                      MarkerDialog(
+                          marker: CustomMarker(
+                        id: UniqueKey().toString(),
+                        markerPosition: position,
+                        creatorID: 'myLocation',
+                        title: 'English Tutor',
+                        description:
+                            'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                        imageUrl: 'https://placehold.co/600x400/png',
+                        category: 'Tutoring',
+                        markerId: const MarkerId('myLocation'),
+                      )).show();
+                    },
+                  ),
+                },
+                polygons: {
+                  Polygon(
+                    polygonId: const PolygonId('myLocation'),
+                    points: [
+                      LatLng(position.latitude - 0.0001,
+                          position.longitude - 0.0001),
+                      LatLng(position.latitude + 0.0001,
+                          position.longitude - 0.0001),
+                      LatLng(position.latitude + 0.0001,
+                          position.longitude + 0.0001),
+                      LatLng(position.latitude - 0.0001,
+                          position.longitude + 0.0001),
+                    ],
+                    strokeWidth: 2,
+                    strokeColor: Colors.blue,
+                    fillColor: Colors.blue.withOpacity(0.5),
+                  ),
+                },
+                mapToolbarEnabled: false,
+                compassEnabled: false,
+                trafficEnabled: false,
+                myLocationButtonEnabled: false,
+                myLocationEnabled: true,
                 zoomControlsEnabled: false,
                 initialCameraPosition: position.toCameraPosition,
                 onMapCreated: (GoogleMapController controller) {

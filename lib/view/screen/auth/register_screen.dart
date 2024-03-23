@@ -117,6 +117,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               email: widget.emailController.text,
                               password: widget.passwordController.text,
                               userType: userType,
+                              imageUrl: '',
+                              phoneAuthCredential: null,
                               createdAt: Timestamp.now(),
                             );
                             AuthController.instants.signUpWithEmailAndPassword(

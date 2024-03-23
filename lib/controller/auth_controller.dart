@@ -2,7 +2,7 @@
 
 import 'package:connectify/library.dart';
 
-class AuthController {
+class AuthController extends ChangeNotifier {
   static AuthController get instants => AuthController();
 
   FirebaseAuth get authInstants => FirebaseAuth.instance;
@@ -27,10 +27,12 @@ class AuthController {
     } on FirebaseAuthException catch (error) {
       RoutingController.context.pop();
 
-      CustomPopups.dialog(
-        content: error.message,
-        dialogType: DialogType.error,
-        title: 'Error',
+      CustomPopups.show(
+        CustomPopups.dialog(
+          content: error.message,
+          dialogType: DialogType.error,
+          title: 'Error',
+        ),
       );
 
       error.message!.log();
@@ -44,7 +46,7 @@ class AuthController {
     CustomPopups.show(const CustomPopups.loadingDialog());
     try {
       await authInstants.createUserWithEmailAndPassword(
-        email: user.email,
+        email: user.email!,
         password: password,
       );
       if (currentUser != null) {
@@ -53,10 +55,12 @@ class AuthController {
       RoutingController.context.pop();
     } on FirebaseAuthException catch (error) {
       RoutingController.context.pop();
-      CustomPopups.dialog(
-        content: error.message,
-        dialogType: DialogType.error,
-        title: 'Error',
+      CustomPopups.show(
+        CustomPopups.dialog(
+          content: error.message,
+          dialogType: DialogType.error,
+          title: 'Error',
+        ),
       );
 
       error.message?.log();
@@ -67,6 +71,16 @@ class AuthController {
     UserModel user,
   ) async {
     try {
+      await currentUser!.updateDisplayName(user.name);
+
+      await currentUser!.updatePhotoURL(user.imageUrl);
+
+      await currentUser!.sendEmailVerification();
+
+      if (user.phoneAuthCredential != null) {
+        await currentUser!.updatePhoneNumber(user.phoneAuthCredential!);
+      }
+
       await firestoreInstants.collection('users').doc(currentUser!.uid).set(
             user
                 .copyWith(
@@ -93,6 +107,13 @@ class AuthController {
       if (currentUser == null || currentUser!.email == null) return;
       await authInstants.sendPasswordResetEmail(email: currentUser!.email!);
     } on FirebaseAuthException catch (error) {
+      CustomPopups.show(
+        CustomPopups.dialog(
+          content: error.message,
+          dialogType: DialogType.error,
+          title: 'Error',
+        ),
+      );
       error.message.log();
     }
   }
@@ -102,6 +123,13 @@ class AuthController {
       if (currentUser == null) return;
       await currentUser!.updatePassword(password);
     } on FirebaseAuthException catch (error) {
+      CustomPopups.show(
+        CustomPopups.dialog(
+          content: error.message,
+          dialogType: DialogType.error,
+          title: 'Error',
+        ),
+      );
       error.message.log();
     }
   }
@@ -113,6 +141,13 @@ class AuthController {
             user.toJson(),
           );
     } on FirebaseAuthException catch (error) {
+      CustomPopups.show(
+        CustomPopups.dialog(
+          content: error.message,
+          dialogType: DialogType.error,
+          title: 'Error',
+        ),
+      );
       error.message.log();
     }
   }
@@ -122,6 +157,13 @@ class AuthController {
       if (currentUser == null) return;
       await currentUser!.verifyBeforeUpdateEmail(email);
     } on FirebaseAuthException catch (error) {
+      CustomPopups.show(
+        CustomPopups.dialog(
+          content: error.message,
+          dialogType: DialogType.error,
+          title: 'Error',
+        ),
+      );
       error.message.log();
     }
   }
@@ -131,6 +173,13 @@ class AuthController {
       if (currentUser == null) return;
       await currentUser!.delete();
     } on FirebaseAuthException catch (error) {
+      CustomPopups.show(
+        CustomPopups.dialog(
+          content: error.message,
+          dialogType: DialogType.error,
+          title: 'Error',
+        ),
+      );
       error.message.log();
     }
   }

@@ -16,6 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Connectify',
+<<<<<<< Updated upstream
+=======
+      // home: SearchScreen(),
+>>>>>>> Stashed changes
       routerConfig: RoutingController.router,
     );
   }

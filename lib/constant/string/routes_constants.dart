@@ -6,10 +6,6 @@ class Routes {
 
   static const String authRoot = 'auth';
 
-  static const String routing = '/';
-
-  static const String routingRoot = 'routing';
-
   static const String profile = '/profile';
 
   static const String profileRoot = 'profile';
@@ -19,4 +15,6 @@ class Routes {
   static const String settingsRoot = 'settings';
 
   static const String search = '/search';
+
+  static const String searchRoot = 'search';
 }

@@ -5,6 +5,14 @@ import 'package:connectify/library.dart';
 class MapController {
   static final MapController instance = MapController();
 
+  FirebaseAuth get authInstants => FirebaseAuth.instance;
+
+  FirebaseFirestore get firestoreInstants => FirebaseFirestore.instance;
+
+  FirebaseStorage get storageInstants => FirebaseStorage.instance;
+
+  User? get currentUser => authInstants.currentUser;
+
   static final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 
@@ -53,5 +61,13 @@ class MapController {
     _.animateCamera(
       CameraUpdate.newCameraPosition(position.toCameraPosition),
     );
+  }
+
+  Future<void> addMarker(CustomMarker marker) async {
+    if (currentUser != null) {
+      final markerRef = firestoreInstants.collection('marker').doc(marker.id);
+
+      await markerRef.set(marker.toJson() as Map<String, dynamic>);
+    }
   }
 }

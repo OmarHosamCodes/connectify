@@ -7,4 +7,8 @@ extension PositionConverter on Position {
       zoom: 0,
     );
   }
+
+  LatLng get toLatLng {
+    return LatLng(latitude, longitude);
+  }
 }

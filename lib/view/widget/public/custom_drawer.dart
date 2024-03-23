@@ -8,30 +8,19 @@ class CustomDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
-          DrawerHeader(
-            decoration: const BoxDecoration(
-              color: Colors.deepPurple,
-              shape: BoxShape.circle,
-            ),
-            child: Center(
-              child: CustomImage(
-                source: FirebaseAuth.instance.currentUser!.photoURL.toString(),
-              ),
-            ),
-          ),
           ListTile(
-            title: const CustomText(text: 'Profile'),
-            onTap: () => Navigator.pushNamed(context, '/profile'),
-          ),
+              leading: const Icon(Icons.person),
+              title: const CustomText(text: 'Profile'),
+              onTap: () => context.push(Routes.profile)),
+          // ListTile(
+          //   leading: const Icon(Icons.settings),
+          //   title: const CustomText(text: 'Settings'),
+          //   onTap: () => context.push(Routes.settings),
+          // ),
           ListTile(
-            title: const CustomText(text: 'Settings'),
-            onTap: () => Navigator.pushNamed(context, '/settings'),
-          ),
-          ListTile(
+            leading: const Icon(Icons.logout),
             title: const CustomText(text: 'Logout'),
-            onTap: () {
-              Navigator.pushNamed(context, '/logout');
-            },
+            onTap: () => AuthController().signOut(),
           ),
         ],
       ),

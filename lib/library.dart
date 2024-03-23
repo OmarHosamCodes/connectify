@@ -32,7 +32,7 @@ export 'extension/logger.dart';
 //* Constants
 export 'constant/string/routes_constants.dart';
 export 'constant/simple_constants.dart';
-
+export 'package:connectify/view/widget/public/morphing_glass_widgets.dart';
 //* Controllers
 export 'controller/routing_controller.dart';
 export 'controller/map_controller.dart';

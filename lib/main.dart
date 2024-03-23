@@ -1,4 +1,5 @@
 import 'package:connectify/library.dart';
+import 'package:connectify/view/screen/search_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,10 +17,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Connectify',
-<<<<<<< Updated upstream
-=======
+
       // home: SearchScreen(),
->>>>>>> Stashed changes
       routerConfig: RoutingController.router,
     );
   }
